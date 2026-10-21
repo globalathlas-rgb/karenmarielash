@@ -2,8 +2,8 @@
 // CONFIGURAÇÃO ÚNICA DO SITE — edite apenas aqui
 // ============================================================
 
-// TODO: SUBSTITUIR pelo número real (apenas dígitos, com DDI 55 + DDD). Ex: "5541999999999"
-export const WHATSAPP_NUMBER = "";
+// Número confirmado pela cliente: +55 41 9731-9379 (DDI + DDD + número)
+export const WHATSAPP_NUMBER = "554197319379";
 
 export const INSTAGRAM_URL = "https://www.instagram.com/karenm.lashes_/";
 export const INSTAGRAM_HANDLE = "@karenm.lashes_";
