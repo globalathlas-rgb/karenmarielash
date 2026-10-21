@@ -5,8 +5,8 @@
 // TODO: SUBSTITUIR pelo número real (apenas dígitos, com DDI 55 + DDD). Ex: "5541999999999"
 export const WHATSAPP_NUMBER = "";
 
-// TODO: SUBSTITUIR pela URL real do perfil. Ex: "https://instagram.com/karenmarie.lash"
-export const INSTAGRAM_URL = "";
+export const INSTAGRAM_URL = "https://www.instagram.com/karenm.lashes_/";
+export const INSTAGRAM_HANDLE = "@karenm.lashes_";
 
 export const ADDRESS_LINE = "Rua do Guarumbi, 153 — Uberaba";
 export const ADDRESS_CITY = "Curitiba — PR";
