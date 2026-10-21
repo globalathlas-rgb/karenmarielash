@@ -210,7 +210,7 @@ function Portfolio() {
       {open !== null && (
         <div role="dialog" aria-modal className="fixed inset-0 z-50 grid place-items-center bg-foreground/85 p-4" onClick={() => setOpen(null)}>
           <button aria-label="Fechar" className="absolute top-5 right-5 rounded-full bg-background p-3"><X className="h-5 w-5" /></button>
-          <img src={PORTFOLIO[open].src} alt={PORTFOLIO[open].alt} className="max-h-[88vh] max-w-full rounded-xl object-contain" />
+          <img src={PORTFOLIO[open]?.src} alt={PORTFOLIO[open]?.alt ?? ""} className="max-h-[88vh] max-w-full rounded-xl object-contain" />
         </div>
       )}
     </section>
