@@ -81,18 +81,18 @@ function FichaPage() {
           <legend className="font-display text-3xl">Informações pessoais</legend>
           <label className="block" id="full_name">
             <span className="mb-2 block text-sm font-medium">Nome completo *</span>
-            <input className={inputCls} autoComplete="name" value={form.full_name} maxLength={120} onChange={(e) => setForm({ ...form, full_name: e.target.value })} aria-invalid={!!errors.full_name} />
+            <input className={inputCls} autoComplete="name" value={form.full_name} maxLength={120} onChange={(e) => setForm({ ...form, full_name: e.target.value })} aria-invalid={!!errors["full_name"]} />
             {err("full_name")}
           </label>
           <div className="grid gap-5 sm:grid-cols-[140px_1fr]">
             <label className="block" id="age">
               <span className="mb-2 block text-sm font-medium">Idade *</span>
-              <input className={inputCls} inputMode="numeric" value={form.age} maxLength={3} onChange={(e) => setForm({ ...form, age: e.target.value.replace(/\D/g, "") })} aria-invalid={!!errors.age} />
+              <input className={inputCls} inputMode="numeric" value={form.age} maxLength={3} onChange={(e) => setForm({ ...form, age: e.target.value.replace(/\D/g, "") })} aria-invalid={!!errors["age"]} />
               {err("age")}
             </label>
             <label className="block" id="procedure">
               <span className="mb-2 block text-sm font-medium">Técnica aplicada ou procedimento desejado *</span>
-              <input className={inputCls} value={form.procedure} maxLength={200} onChange={(e) => setForm({ ...form, procedure: e.target.value })} aria-invalid={!!errors.procedure} />
+              <input className={inputCls} value={form.procedure} maxLength={200} onChange={(e) => setForm({ ...form, procedure: e.target.value })} aria-invalid={!!errors["procedure"]} />
               {err("procedure")}
             </label>
           </div>
