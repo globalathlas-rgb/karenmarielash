@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { MapPin, Instagram, X, ArrowDown, ClipboardList } from "lucide-react";
+import { MapPin, Instagram, X, ArrowDown, ClipboardList, Eye, Sparkles, HeartHandshake, Feather } from "lucide-react";
+import { EyeArt, Flower, LashDivider } from "@/components/LashArt";
 import {
   ABOUT_PHOTO, ADDRESS_CITY, ADDRESS_LINE, HERO_PHOTO, INSTAGRAM_HANDLE, INSTAGRAM_URL, PORTFOLIO, SERVICES,
   mapsLink, serviceMessage, whatsappLink, ANAMNESE_URL,
@@ -81,41 +82,36 @@ function Header() {
   );
 }
 
-function PhotoSlot({ src, alt, label, className = "" }: { src: string; alt: string; label: string; className?: string }) {
-  if (src) return <img src={src} alt={alt} className={`h-full w-full object-cover ${className}`} loading="lazy" />;
-  return (
-    <div className={`placeholder-pattern flex h-full w-full items-end p-6 ${className}`} aria-label={label}>
-      <span className="eyebrow text-[0.6rem] text-muted-foreground">{label}</span>
-    </div>
-  );
-}
-
 function Hero() {
   return (
-    <section id="inicio" className="relative overflow-hidden pt-32 pb-20 md:min-h-screen md:pt-40">
+    <section id="inicio" className="bg-veil relative overflow-hidden pt-32 pb-20 md:min-h-screen md:pt-40">
       <div className="float-slow pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-blush/40 blur-3xl" />
-      <div className="float-slow pointer-events-none absolute bottom-10 left-[8%] h-40 w-40 rounded-full border border-accent/30 [animation-delay:-4s]" />
-      <div className="mx-auto grid max-w-7xl gap-14 px-6 md:grid-cols-12 md:items-center">
+      <div className="mx-auto grid max-w-7xl gap-12 px-6 md:grid-cols-12 md:items-center">
         <div className="md:col-span-7">
           <p className="eyebrow rise text-accent [animation-delay:.1s]">Lash Designer · Curitiba</p>
-          <h1 className="rise mt-6 text-[clamp(4rem,12vw,10rem)] leading-[0.85] tracking-tight [animation-delay:.25s]">
+          <h1 className="rise mt-6 text-[clamp(3.6rem,11vw,9rem)] leading-[0.85] tracking-tight [animation-delay:.25s]">
             Karen<br /><span className="ml-[12%] italic text-secondary">Marie</span>
           </h1>
-          <p className="rise mt-8 font-display text-3xl italic text-primary [animation-delay:.5s]">“Seu olhar, sua essência.”</p>
+          <p className="eyebrow rise mt-5 ml-[12%] text-xs text-primary [animation-delay:.4s]">Lash Designer</p>
+          <LashDivider className="rise mt-8 w-32 text-accent [animation-delay:.5s]" />
+          <p className="rise mt-4 font-display text-3xl italic text-primary [animation-delay:.55s]">“Seu olhar, sua essência.”</p>
           <p className="rise mt-4 max-w-md text-muted-foreground [animation-delay:.65s]">
-            Realçando sua beleza com delicadeza, cuidado e atenção a cada detalhe.
+            Um atendimento tranquilo e acolhedor, pensado com cuidado para cada cliente e cada olhar.
           </p>
-          <div className="rise mt-10 flex flex-wrap gap-4 [animation-delay:.8s]">
-            <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className={btnPrimary}><WhatsIcon /> Agendar horário</a>
-            <a href="#servicos" className={btnGhost}>Conhecer meu trabalho <ArrowDown className="h-4 w-4" /></a>
+          <div className="rise mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4 [animation-delay:.8s]">
+            <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className={btnPrimary}><WhatsIcon /> Agendar pelo WhatsApp</a>
             <a href={ANAMNESE_URL} target="_blank" rel="noopener noreferrer" className={btnGhost}><ClipboardList className="h-4 w-4" /> Preencher Ficha de Anamnese</a>
           </div>
+          <a href="#servicos" className="rise mt-8 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-accent [animation-delay:.9s]">Conhecer os serviços <ArrowDown className="h-4 w-4" /></a>
         </div>
-        <div className="rise relative md:col-span-5 [animation-delay:.4s]">
-          <div className="aspect-[4/5] overflow-hidden rounded-t-full rounded-b-2xl">
-            <PhotoSlot src={HERO_PHOTO} alt="Trabalho de Karen Marie" label="Espaço para foto real" />
-          </div>
-          <span className="eyebrow absolute -bottom-6 -left-4 rounded-full bg-primary px-5 py-3 text-[0.6rem] text-primary-foreground">Lash Design</span>
+        <div className="rise relative mx-auto w-full max-w-sm md:col-span-5 md:max-w-none [animation-delay:.4s]">
+          {HERO_PHOTO ? (
+            <div className="aspect-[4/5] overflow-hidden rounded-t-full rounded-b-2xl"><img src={HERO_PHOTO} alt="Karen Marie" className="h-full w-full object-cover" /></div>
+          ) : (
+            <div className="relative aspect-square rounded-full bg-card/70 p-4 shadow-[0_30px_80px_-30px_var(--accent)]">
+              <EyeArt className="h-full w-full" />
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -135,8 +131,18 @@ function About() {
   return (
     <section id="sobre" className="py-24 md:py-32">
       <div className="mx-auto grid max-w-6xl gap-14 px-6 md:grid-cols-2 md:items-center">
-        <div className="reveal aspect-[3/4] overflow-hidden rounded-2xl md:order-1">
-          <PhotoSlot src={ABOUT_PHOTO} alt="Karen Marie" label="Espaço para foto da Karen" />
+        <div className="reveal md:order-1">
+          {ABOUT_PHOTO ? (
+            <div className="aspect-[3/4] overflow-hidden rounded-2xl"><img src={ABOUT_PHOTO} alt="Karen Marie" loading="lazy" className="h-full w-full object-cover" /></div>
+          ) : (
+            <div className="relative overflow-hidden rounded-t-full rounded-b-2xl bg-primary px-10 pt-24 pb-14 text-primary-foreground">
+              <div className="float-slow absolute -right-10 top-10 h-48 w-48 rounded-full bg-secondary blur-2xl" />
+              <svg viewBox="0 0 100 100" className="absolute -left-6 top-16 h-32 w-32 opacity-60" aria-hidden><Flower x={50} y={50} s={2} /></svg>
+              <p className="relative font-display text-[clamp(2.5rem,6vw,3.6rem)] italic leading-[1.05]">Cada olhar tem sua própria beleza.</p>
+              <LashDivider className="relative mt-8 w-28 text-blush" />
+              <p className="eyebrow relative mt-6 text-[0.6rem] text-blush">Karen Marie · Lash Designer</p>
+            </div>
+          )}
         </div>
         <div className="md:order-2">
           <SectionTitle eyebrow="Sobre" title="Prazer, sou a Karen." />
@@ -161,7 +167,8 @@ function Services() {
           <div className="grid gap-6 md:grid-cols-3">
             {SERVICES.map((s) => (
               <article key={s.name} className="reveal group flex flex-col rounded-2xl border border-border bg-background p-8 transition-all duration-500 hover:-translate-y-1 hover:border-accent/50 hover:shadow-xl">
-                <h3 className="text-3xl">{s.name}</h3>
+                <span className="grid h-12 w-12 place-items-center rounded-full bg-blush/40 text-secondary transition-transform duration-500 group-hover:rotate-12"><Sparkles className="h-5 w-5" /></span>
+                <h3 className="mt-6 text-3xl">{s.name}</h3>
                 <p className="mt-3 flex-1 text-muted-foreground">{s.description}</p>
                 {(s.duration || s.price) && (
                   <div className="mt-6 flex gap-6 text-sm">
@@ -176,9 +183,22 @@ function Services() {
             ))}
           </div>
         ) : (
-          <div className="reveal flex flex-col items-start gap-6 rounded-2xl border border-dashed border-accent/40 p-10 md:flex-row md:items-center md:justify-between">
-            <p className="font-display text-2xl italic">Os procedimentos estão sendo preparados com carinho. Fale comigo para saber mais.</p>
-            <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className={`${btnPrimary} shrink-0`}><WhatsIcon /> Consultar</a>
+          <div className="grid gap-6 md:grid-cols-3">
+            {([
+              [Eye, "Extensão de cílios", "Técnica e estilo definidos com você, respeitando o formato dos seus olhos e o resultado que você deseja."],
+              [HeartHandshake, "Avaliação personalizada", "Antes do procedimento, conversamos e você preenche a ficha de anamnese para um atendimento seguro."],
+              [Feather, "Atendimento acolhedor", "Um momento calmo e confortável, com atenção a cada detalhe do início ao fim."],
+            ] as const).map(([Icon, t, d], i) => (
+              <article key={t} className="reveal group flex flex-col rounded-2xl border border-border bg-background p-8 transition-all duration-500 hover:-translate-y-1 hover:border-accent/50 hover:shadow-xl" style={{ transitionDelay: `${i * 100}ms` }}>
+                <span className="grid h-12 w-12 place-items-center rounded-full bg-blush/40 text-secondary transition-transform duration-500 group-hover:rotate-12"><Icon className="h-5 w-5" /></span>
+                <h3 className="mt-6 text-3xl">{t}</h3>
+                <p className="mt-3 flex-1 text-muted-foreground">{d}</p>
+              </article>
+            ))}
+            <div className="reveal flex flex-col items-start gap-6 rounded-2xl bg-primary p-8 text-primary-foreground md:col-span-3 md:flex-row md:items-center md:justify-between md:p-10">
+              <p className="font-display text-2xl italic">Quer saber valores e horários? Fale comigo.</p>
+              <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 shrink-0 items-center gap-2 rounded-full bg-background px-7 text-xs font-medium tracking-[0.2em] text-primary uppercase transition-all duration-500 hover:-translate-y-0.5 hover:bg-blush"><WhatsIcon /> Consultar</a>
+            </div>
           </div>
         )}
       </div>
@@ -192,7 +212,7 @@ function Portfolio() {
   return (
     <section id="portfolio" className="py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionTitle eyebrow="Portfólio" title="Detalhes que fazem a diferença." />
+        <SectionTitle eyebrow="Portfólio" title={PORTFOLIO.length ? "Detalhes que fazem a diferença." : "Portfólio em breve"} />
         {PORTFOLIO.length ? (
           <div className="grid auto-rows-[220px] grid-cols-2 gap-4 md:grid-cols-3">
             {PORTFOLIO.map((p, i) => (
@@ -202,10 +222,15 @@ function Portfolio() {
             ))}
           </div>
         ) : (
-          <div className="reveal relative grid min-h-80 place-items-center overflow-hidden rounded-2xl bg-primary px-6 text-center text-primary-foreground">
+          <div className="reveal relative grid min-h-80 place-items-center overflow-hidden rounded-2xl bg-primary px-6 py-16 text-center text-primary-foreground">
             <div className="float-slow absolute -left-10 top-6 h-48 w-48 rounded-full border border-blush/30" />
             <div className="float-slow absolute -right-6 bottom-0 h-64 w-64 rounded-full bg-secondary/60 blur-2xl [animation-delay:-3s]" />
-            <p className="relative max-w-lg font-display text-4xl italic leading-tight">Em breve, meus primeiros resultados estarão aqui.</p>
+            <div className="relative max-w-xl">
+              <LashDivider className="mx-auto w-28 text-blush" />
+              <p className="mt-6 font-display text-4xl italic leading-tight">Os primeiros trabalhos estão sendo registrados com carinho.</p>
+              <p className="mt-4 text-primary-foreground/70">Em breve, fotos reais dos atendimentos — sempre com autorização das clientes.</p>
+              {INSTAGRAM_URL && <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-2 text-sm text-blush underline-offset-4 hover:underline"><Instagram className="h-4 w-4" /> Acompanhe no {INSTAGRAM_HANDLE}</a>}
+            </div>
           </div>
         )}
       </div>
