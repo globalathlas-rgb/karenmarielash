@@ -39,3 +39,7 @@ export const PORTFOLIO: PortfolioItem[] = [];
 // Fotos reais (deixe vazio até ter as imagens)
 export const HERO_PHOTO = "";
 export const ABOUT_PHOTO = "";
+
+// FICHA DE ANAMNESE — preenchida exclusivamente pelo Google Forms
+export const ANAMNESE_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSf13S2npPxY71dX78Z4iObz113daLu1jOBYicq3c5rjaP4qhQ/viewform";
