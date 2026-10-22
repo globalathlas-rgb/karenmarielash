@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { MapPin, Instagram, X, ArrowDown, ClipboardList } from "lucide-react";
 import {
   ABOUT_PHOTO, ADDRESS_CITY, ADDRESS_LINE, HERO_PHOTO, INSTAGRAM_HANDLE, INSTAGRAM_URL, PORTFOLIO, SERVICES,
-  mapsLink, serviceMessage, whatsappLink,
+  mapsLink, serviceMessage, whatsappLink, ANAMNESE_URL,
 } from "@/config/site";
 
 const TITLE = "Karen Marie | Lash Designer em Curitiba";
@@ -71,7 +71,7 @@ function Header() {
           {NAV.slice(1).map(([l, h]) => (
             <a key={h} href={h} className="transition-colors hover:text-accent">{l}</a>
           ))}
-          <Link to="/ficha" className="transition-colors hover:text-accent">Ficha de Anamnese</Link>
+          <a href={ANAMNESE_URL} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-accent">Preencher Ficha de Anamnese</a>
         </nav>
         <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className={`${btnPrimary} min-h-10 px-5 text-[0.65rem]`}>
           <WhatsIcon /> <span className="hidden sm:inline">Agendar</span>
@@ -108,7 +108,7 @@ function Hero() {
           <div className="rise mt-10 flex flex-wrap gap-4 [animation-delay:.8s]">
             <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className={btnPrimary}><WhatsIcon /> Agendar horário</a>
             <a href="#servicos" className={btnGhost}>Conhecer meu trabalho <ArrowDown className="h-4 w-4" /></a>
-            <Link to="/ficha" className={btnGhost}><ClipboardList className="h-4 w-4" /> Ficha de anamnese</Link>
+            <a href={ANAMNESE_URL} target="_blank" rel="noopener noreferrer" className={btnGhost}><ClipboardList className="h-4 w-4" /> Preencher Ficha de Anamnese</a>
           </div>
         </div>
         <div className="rise relative md:col-span-5 [animation-delay:.4s]">
@@ -282,7 +282,7 @@ function Footer() {
         </div>
         <nav className="flex flex-wrap gap-x-6 gap-y-3 text-sm">
           {NAV.map(([l, h]) => <a key={h} href={h} className="hover:text-blush">{l}</a>)}
-          <Link to="/ficha" className="hover:text-blush">Ficha de Anamnese</Link>
+          <a href={ANAMNESE_URL} target="_blank" rel="noopener noreferrer" className="hover:text-blush">Preencher Ficha de Anamnese</a>
           <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-blush"><WhatsIcon /> WhatsApp</a>
           {INSTAGRAM_URL && <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-blush"><Instagram className="h-4 w-4" /> {INSTAGRAM_HANDLE}</a>}
           <Link to="/privacidade" className="hover:text-blush">Privacidade</Link>
