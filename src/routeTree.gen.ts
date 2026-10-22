@@ -10,29 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
-import { Route as AuthRouteImport } from './routes/auth'
-import { Route as FichaRouteImport } from './routes/ficha'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
-import { Route as AuthenticatedFichasRouteImport } from './routes/_authenticated/fichas'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
-  id: '/_authenticated',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FichaRoute = FichaRouteImport.update({
-  id: '/ficha',
-  path: '/ficha',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacidadeRoute = PrivacidadeRouteImport.update({
@@ -40,55 +22,30 @@ const PrivacidadeRoute = PrivacidadeRouteImport.update({
   path: '/privacidade',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedFichasRoute = AuthenticatedFichasRouteImport.update({
-  id: '/fichas',
-  path: '/fichas',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/auth': typeof AuthRoute
-  '/ficha': typeof FichaRoute
   '/privacidade': typeof PrivacidadeRoute
-  '/fichas': typeof AuthenticatedFichasRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/auth': typeof AuthRoute
-  '/ficha': typeof FichaRoute
   '/privacidade': typeof PrivacidadeRoute
-  '/fichas': typeof AuthenticatedFichasRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
-  '/auth': typeof AuthRoute
-  '/ficha': typeof FichaRoute
   '/privacidade': typeof PrivacidadeRoute
-  '/_authenticated/fichas': typeof AuthenticatedFichasRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/ficha' | '/privacidade' | '/fichas'
+  fullPaths: '/' | '/privacidade'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/ficha' | '/privacidade' | '/fichas'
-  id:
-    | '__root__'
-    | '/'
-    | '/_authenticated'
-    | '/auth'
-    | '/ficha'
-    | '/privacidade'
-    | '/_authenticated/fichas'
+  to: '/' | '/privacidade'
+  id: '__root__' | '/' | '/privacidade'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
-  AuthRoute: typeof AuthRoute
-  FichaRoute: typeof FichaRoute
   PrivacidadeRoute: typeof PrivacidadeRoute
 }
 
@@ -101,27 +58,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated': {
-      id: '/_authenticated'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof AuthenticatedRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/ficha': {
-      id: '/ficha'
-      path: '/ficha'
-      fullPath: '/ficha'
-      preLoaderRoute: typeof FichaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/privacidade': {
       id: '/privacidade'
       path: '/privacidade'
@@ -129,32 +65,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/fichas': {
-      id: '/_authenticated/fichas'
-      path: '/fichas'
-      fullPath: '/fichas'
-      preLoaderRoute: typeof AuthenticatedFichasRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
   }
 }
 
-interface AuthenticatedRouteRouteChildren {
-  AuthenticatedFichasRoute: typeof AuthenticatedFichasRoute
-}
-
-const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedFichasRoute: AuthenticatedFichasRoute,
-}
-
-const AuthenticatedRouteRouteWithChildren =
-  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
-  AuthRoute: AuthRoute,
-  FichaRoute: FichaRoute,
   PrivacidadeRoute: PrivacidadeRoute,
 }
 export const routeTree = rootRouteImport
