@@ -128,3 +128,18 @@
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+@utility bg-veil {
+  background:
+    radial-gradient(60% 50% at 85% 10%, color-mix(in oklab, var(--blush) 45%, transparent), transparent 70%),
+    radial-gradient(50% 40% at 0% 90%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 70%),
+    var(--background);
+}
+@utility draw-line {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: draw 2.4s cubic-bezier(.6,.1,.2,1) forwards;
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@utility shimmer-soft { animation: shimmer 6s ease-in-out infinite; }
+@keyframes shimmer { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
